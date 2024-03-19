@@ -121,7 +121,7 @@ def upload_github():
         runSubprocess('git add .', shell=True, check=True)
         print('\ngit commit\n')
         commit=input('Enter commit message: ')
-        runSubprocess('git commit -m "test commit"', shell=True, check=True)
+        runSubprocess(f'git commit -m "{commit}"', shell=True, check=True)
         print('\ngit branch\n')
         runSubprocess('git branch -M main', shell=True, check=True)
         first_commit = '3'
