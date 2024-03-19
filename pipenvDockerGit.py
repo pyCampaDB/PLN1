@@ -129,7 +129,7 @@ def upload_github():
             first_commit = input('If your first commit? [Y/N]: ')
             if first_commit not in ['Y', 'y', 'N', 'n']:
                 print('\nInvalid option\n')
-        if first_commit == ['Y', 'y', 'N', 'n']:
+        if first_commit == ['Y', 'y']:
             repo = input('Enter your repository name: ')
             my_git = f'https://github.com/pyCampaDB/{repo}.git'
             runSubprocess(f'git remote add origin {my_git}',
