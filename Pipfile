@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+nltk = "*"
+spacy = "*"
+matplotlib = "*"
+bs4 = "*"
+requests = "*"
+wordcloud = "*"
+tensorflow-hub = "*"
+pandas = "*"
+sentiment-analysis-spanish = "*"
+scikit-learn = "*"
+
+[dev-packages]
+ipykernel = "*"
+
+[requires]
+python_version = "3.11"

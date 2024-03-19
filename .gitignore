@@ -1,0 +1,6 @@
+.env
+logs/
+.idea/
+.dockerignore
+pdfs/
+text/
