@@ -124,7 +124,7 @@ def upload_github():
         runSubprocess('git commit -m "test commit"', shell=True, check=True)
         print('\ngit branch\n')
         runSubprocess('git branch -M main', shell=True, check=True)
-        first_commit = ''
+        first_commit = '3'
         while first_commit not in ['Y', 'y', 'N', 'n']:
             first_commit = input('If your first commit? [Y/N]: ')
             if first_commit not in ['Y', 'y', 'N', 'n']:
