@@ -128,6 +128,8 @@ title_feel['prediccion_ia_ajustada'] = title_feel['prediccion_ia'].apply(lambda 
 
 predict_true_ia = title_feel[title_feel['label']==title_feel['prediccion_ia_ajustada']]
 jump()
+print('predict_true_ai.shape[0]')
 print(predict_true_ia.shape[0])
 jump()
+print('predict_true_ai.shape[0]/title_fell.shape[0]')
 print(predict_true_ia.shape[0]/title_feel.shape[0])
