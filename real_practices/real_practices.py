@@ -10,8 +10,10 @@ def jump():
 
 
 info_hotels = read_csv('real_practices/hoteles.csv')
+print('info_hotels.head()')
 print(info_hotels.head())
 jump()
+print('info_hotels.shape')
 print(info_hotels.shape)
 jump()
 info_hotels_without_neutrals = info_hotels[info_hotels.label!=1]
@@ -45,6 +47,7 @@ def preprocess(text):
     return words
 title_feel['titulo_preprocesado'] = title_feel['title'].apply(lambda text: preprocess(text))
 jump()
+print('title_feel.head()')
 print(title_feel.head())
 
 
@@ -66,16 +69,19 @@ negative_words = ['malo', 'mal', 'flojo', 'fatal', 'terrible',
 
 title_feel['prediccion_basica'] = title_feel['titulo_preprocesado'].apply(lambda text: evaluate_title(text, positive_words, negative_words))
 jump()
+print('title_feel.head()')
 print(title_feel.head())
 jump()
 
-print(title_feel[title_feel.prediccion_basica!=0].shape[0])
+print('title_feel[title_feel.prediccion_basica!=0].shape[0]',
+      title_feel[title_feel.prediccion_basica!=0].shape[0])
 jump()
-print(title_feel[title_feel.prediccion_basica!=0].shape[0]/title_feel.shape[0])
+print('title_feel[title_feel.prediccion_basica!=0].shape[0]/title_feel.shape[0]: ',
+    title_feel[title_feel.prediccion_basica!=0].shape[0]/title_feel.shape[0])
 jump()
-
+print('title_feel[title_feel.prediccion_basica!=0]')
 print(title_feel[title_feel.prediccion_basica!=0])
-
+jump()
 def tunning_predict(prediction):
     if prediction < 0:
         return 0
@@ -85,26 +91,29 @@ def tunning_predict(prediction):
         return 2
     
 title_feel['prediccion_ajustada'] = title_feel['prediccion_basica'].apply(lambda prediction: tunning_predict(prediction))
+print('title_feel[title_feel.prediccion_basica!=0].head()')
 print(title_feel[title_feel.prediccion_basica!=0].head())
 jump()
 predict_emited = title_feel[title_feel.prediccion_basica!=0]
-print(predict_emited.shape[0])
+print('predict_emited.shape[0]: ',predict_emited.shape[0])
 jump()
 predict_true = predict_emited[predict_emited["label"]==predict_emited["prediccion_ajustada"]]
-print(predict_true.shape[0])
+print('predict_true.shape[0]: ',predict_true.shape[0])
 jump()
 predict_failed = predict_emited[predict_emited['label']!=predict_emited['prediccion_ajustada']]
 jump()
 predict_optimistas = predict_failed[predict_failed["prediccion_ajustada"]==3]
-
+print('predict_optimistas.head()')
 print(predict_optimistas.head())
 jump()
-print(predict_optimistas.shape[0])
+print('predict_optimistas.shape[0]: ',predict_optimistas.shape[0])
 jump()
 predict_failed = predict_failed[predict_failed["prediccion_ajustada"]==0]
+print('predict_failed.head[0]')
 print(predict_failed.head())
 jump()
-print(predict_failed.shape[0])
+print('predict_failed.shape[0]: ', predict_failed.shape[0])
+#print(predict_failed.shape[0])
 
 from sentiment_analysis_spanish import sentiment_analysis
 model_sentiment = sentiment_analysis.SentimentAnalysisSpanish()
@@ -112,11 +121,13 @@ model_sentiment = sentiment_analysis.SentimentAnalysisSpanish()
 def feel(text, sentiment=model_sentiment):
     return sentiment.sentiment(text)
 jump()
-print(feel('esto es genial'))
+print('Análisis de sentimiento de dos frases: ')
+print('feel(comentario positivo): ',feel('esto es genial'))
 jump()
-print(feel('esto es horrible'))
+print('feel(comentario negativo): ',feel('esto es horrible'))
 jump()
 title_feel['prediccion_ia'] = title_feel['title'].apply(lambda text: feel(text))
+print('\nTable: title_feel["prediccion_ia"]')
 print(title_feel['prediccion_ia'].head())
 def tunning_predict_ia(predict):
     if predict < 0.5:
